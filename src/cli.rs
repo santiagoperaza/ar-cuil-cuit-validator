@@ -5,6 +5,8 @@ use clap::Parser;
 
 #[derive(Parser, Debug)]
 struct CliArgs {
+  /// Required to be 11 digits, only numbers, without dashes
+  #[clap(verbatim_doc_comment)]
   cuil_cuit: u64,
 }
 
