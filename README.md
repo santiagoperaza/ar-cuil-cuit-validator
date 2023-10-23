@@ -10,7 +10,7 @@ It is required to provide the complete CUIL/CUIT without dashes.
 
 We are using [clap](https://docs.rs/clap/latest/clap/) to parse the CLI arguments, so running `cargo run -- -h` shows the expected format of the arguments.
 
-### Exmples:
+### Examples:
 
 #### Valid
 ```
