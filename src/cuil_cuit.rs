@@ -42,3 +42,6 @@ fn calculate_last_digit(cuil_cuit: u64) -> u32 {
 
   if mod11 == 11 { 0 } else { mod11 }
 }
+
+#[cfg(test)]
+mod test;
