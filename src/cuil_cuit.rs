@@ -1,5 +1,7 @@
 use std::fmt;
 
+const CUIL_CUIT_MULTIPLIERS: [u32; 10] = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
+
 #[derive(Debug)]
 pub enum CuilCuitError {
     InvalidFormat(String),
@@ -32,10 +34,9 @@ fn calculate_last_digit(cuil_cuit: u64) -> u32 {
   let digits: Vec<_> = cuil_cuit.to_string().chars().map(|d| d.to_digit(10).unwrap()).collect();
   let digits = &digits[..10];
 
-  let validators = vec![5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
   let mut sum = 0;
   for (index, ele) in digits.iter().enumerate() {
-      sum += validators[index] * ele
+      sum += CUIL_CUIT_MULTIPLIERS[index] * ele
   }
 
   let mod11 = 11 - (sum % 11);
