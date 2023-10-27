@@ -7,7 +7,7 @@ repository = "https://github.com/santiagoperaza/ar-cuil-cuit-validator"
 documentation = "https://github.com/santiagoperaza/ar-cuil-cuit-validator"
 readme = "README.md"
 authors = ["Santiago Peraza"]
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "MIT"
 
