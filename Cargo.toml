@@ -1,7 +1,15 @@
 [package]
 name = "ar_cuil_cuit_validator"
+description = "CLI tool to validate Argentinian CUIL/CUIT number"
+keywords = ["argentina", "cuil", "cuit"]
+categories = ["command-line-interface", "command-line-utilities", "development-tools"]
+repository = "https://github.com/santiagoperaza/ar-cuil-cuit-validator"
+documentation = "https://github.com/santiagoperaza/ar-cuil-cuit-validator"
+readme = "README.md"
+authors = ["Santiago Peraza"]
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
