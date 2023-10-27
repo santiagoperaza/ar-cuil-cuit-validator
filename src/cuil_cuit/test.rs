@@ -6,10 +6,10 @@ fn assert_validation_returns_true() {
     let valid_cuil_cuit = 27280335148;
     let result = is_valid(valid_cuil_cuit).unwrap();
     assert_eq!(true, result);
-  }
-  
-  #[test]
-  fn assert_validation_returns_false() {
+}
+
+#[test]
+fn assert_validation_returns_false() {
     let invalid_cuil_cuit = 27280335141;
     let result = is_valid(invalid_cuil_cuit).unwrap();
     assert_eq!(false, result);

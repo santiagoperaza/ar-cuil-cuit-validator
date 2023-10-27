@@ -8,40 +8,57 @@ pub enum CuilCuitError {
 }
 
 impl fmt::Display for CuilCuitError {
-  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-      let message = match self {
-        CuilCuitError::InvalidFormat(cuil_cuit) => format!("Invalid CUIL/CUIT format, it must be 11 digits, received: {}", cuil_cuit),
-      };
-      write!(f, "{}", message)
-  }
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let message = match self {
+            CuilCuitError::InvalidFormat(cuil_cuit) => format!(
+                "Invalid CUIL/CUIT format, it must be 11 digits, received: {}",
+                cuil_cuit
+            ),
+        };
+        write!(f, "{}", message)
+    }
 }
 
 pub fn is_valid(cuil_cuit: u64) -> Result<bool, CuilCuitError> {
-  if cuil_cuit.to_string().len() != 11 {
-    Err(CuilCuitError::InvalidFormat(cuil_cuit.to_string()))
-  } else {
-    let expected_last_digit = calculate_last_digit(cuil_cuit);
-    let last_digit = cuil_cuit.to_string().chars().last().unwrap().to_digit(10).unwrap();
-    if last_digit == expected_last_digit {
-        Ok(true)
+    if cuil_cuit.to_string().len() != 11 {
+        Err(CuilCuitError::InvalidFormat(cuil_cuit.to_string()))
     } else {
-        Ok(false)
+        let expected_last_digit = calculate_last_digit(cuil_cuit);
+        let last_digit = cuil_cuit
+            .to_string()
+            .chars()
+            .last()
+            .unwrap()
+            .to_digit(10)
+            .unwrap();
+        if last_digit == expected_last_digit {
+            Ok(true)
+        } else {
+            Ok(false)
+        }
     }
-  }
 }
 
 fn calculate_last_digit(cuil_cuit: u64) -> u32 {
-  let digits: Vec<_> = cuil_cuit.to_string().chars().map(|d| d.to_digit(10).unwrap()).collect();
-  let digits = &digits[..10];
+    let digits: Vec<_> = cuil_cuit
+        .to_string()
+        .chars()
+        .map(|d| d.to_digit(10).unwrap())
+        .collect();
+    let digits = &digits[..10];
 
-  let mut sum = 0;
-  for (index, ele) in digits.iter().enumerate() {
-      sum += CUIL_CUIT_MULTIPLIERS[index] * ele
-  }
+    let mut sum = 0;
+    for (index, ele) in digits.iter().enumerate() {
+        sum += CUIL_CUIT_MULTIPLIERS[index] * ele
+    }
 
-  let mod11 = 11 - (sum % 11);
+    let mod11 = 11 - (sum % 11);
 
-  if mod11 == 11 { 0 } else { mod11 }
+    if mod11 == 11 {
+        0
+    } else {
+        mod11
+    }
 }
 
 #[cfg(test)]
