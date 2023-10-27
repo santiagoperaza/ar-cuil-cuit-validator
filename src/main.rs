@@ -16,7 +16,7 @@
 //! Then use it in your code
 //!
 //! ```rust
-//! use ar_cuil_cuit_validator::cuil_cuit;
+//! use ar_cuil_cuit_validator::{cuil_cuit};
 //!
 //! let valid_cuil_cuit = 27280335148;
 //! let result = is_valid(valid_cuil_cuit).unwrap();
